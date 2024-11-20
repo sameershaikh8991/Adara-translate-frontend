@@ -1,26 +1,23 @@
 import React, { useState } from "react";
-import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder"; // Import AudioRecorder
+import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 import axios from "axios";
 import "./App.css";
 
 const App = () => {
   const [recording, setRecording] = useState(false);
-  const [audioBlob, setAudioBlob] = useState(null);
   const [transcription, setTranscription] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [hasTranscribed, setHasTranscribed] = useState(false); // Flag to track if transcription is done
+  const [hasTranscribed, setHasTranscribed] = useState(false);
 
   const recorderControls = useAudioRecorder();
 
   // Handle when recording is complete
   const handleRecordingComplete = (audioBlob) => {
-    // Check if transcription has already been completed to avoid duplicate calls
     if (hasTranscribed) return;
 
-    setAudioBlob(audioBlob);
-    setHasTranscribed(true); // Set the flag to avoid further transcription requests
-    sendAudioToAPI(audioBlob);
+    setHasTranscribed(true);
+    sendAudioToAPI(audioBlob); // Directly use audioBlob in the API call
   };
 
   // Send audio to backend for transcription
@@ -45,7 +42,6 @@ const App = () => {
       });
   };
 
-  // Get truncated version of transcription
   const getTruncatedTranscription = (text, wordLimit) => {
     const words = text.split(" ");
     return words.length > wordLimit
@@ -53,7 +49,6 @@ const App = () => {
       : text;
   };
 
-  // Open/close modal
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -63,7 +58,6 @@ const App = () => {
         <h1>Speech to Text</h1>
       </div>
 
-      {/* Audio Recorder UI */}
       <div className="recorder-container">
         <AudioRecorder
           recorderControls={recorderControls}
@@ -73,20 +67,19 @@ const App = () => {
           downloadFileExtension="mp3"
           strokeColor="#000000"
           backgroundColor="#FF5733"
-          style={{ display: "none" }} // Hide the default UI
+          style={{ display: "none" }}
         />
       </div>
 
-      {/* Recording Control Buttons */}
       <div className="buttons">
         <button
           className="btn start"
           onClick={() => {
             recorderControls.startRecording();
             setRecording(true);
-            setHasTranscribed(false); // Reset transcription flag when starting new recording
+            setHasTranscribed(false);
           }}
-          disabled={recording || isProcessing} // Disable if recording or processing
+          disabled={recording || isProcessing}
         >
           Start Recording
         </button>
@@ -96,17 +89,16 @@ const App = () => {
             recorderControls.stopRecording();
             setRecording(false);
           }}
-          disabled={!recording || isProcessing} // Disable if not recording or processing
+          disabled={!recording || isProcessing}
         >
           Stop Recording
         </button>
       </div>
 
-      {/* Transcription Display */}
       <div className="transcription-container">
         <div style={{ marginTop: "20px" }}>
           {isProcessing ? (
-            <p>Audio is processing...</p> // Display when audio is being processed
+            <p>Audio is processing...</p>
           ) : (
             <>
               <p className="transcription">
@@ -122,7 +114,6 @@ const App = () => {
         </div>
       </div>
 
-      {/* Modal for Full Transcription */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal">
