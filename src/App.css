@@ -1,0 +1,267 @@
+/* Reset and Base Styles */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main App Container */
+.app {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Header */
+.header {
+  background-color: #0077b6;
+  color: white;
+  padding: 15px 0;
+  border-radius: 8px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* Recorder Section */
+.recorder-container {
+  margin-top: 20px;
+}
+
+
+
+/* Buttons */
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn.start {
+  background-color: #0077b6;
+  color: white;
+}
+
+.btn.stop {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn:disabled {
+  background-color: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.btn:hover:enabled {
+  transform: scale(1.05);
+}
+
+/* Transcription Container */
+.transcription-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: left;
+}
+
+.transcription-container h2 {
+  margin-bottom: 15px;
+}
+
+.transcription {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Show More/Less Button */
+.btn.toggle {
+  margin-top: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn.toggle:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+
+/* Sound Wave Container */
+.sound-wave {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Pulse Effect Around the Sound Wave */
+.sound-wave:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px dashed #00bcd4;
+  border-radius: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Adjust the stroke color for a better wave display */
+.sound-wave svg {
+  stroke-width: 3;
+  stroke: #00bcd4 !important;
+  background-color: transparent;
+}
+
+/* General styles */
+.app {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Transcription Container */
+.transcription-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.transcription {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Show More Button */
+.btn.toggle {
+  margin-top: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn.toggle:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  position: relative;
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.modal p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
+.rc-voice-recorder .rc-voice-recorder-button {
+  display: none;
+}
+
+img.audio-recorder-options,img.audio-recorder-mic{
+  display: none;
+}
